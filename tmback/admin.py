@@ -4,13 +4,13 @@ from .models import Company, Category, Product, OrderDetail, Order, Invoice
 
 # Register your models here.
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ('company_name', 'company_address', 'company_number')
+    list_display = ('company_id','company_name', 'company_address', 'company_number')
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('category_id','name',)
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display= ('name', 'price')
+    list_display= ('product_id','name', 'price')
 
 class OrderDetailAdmin(admin.ModelAdmin):
     pass

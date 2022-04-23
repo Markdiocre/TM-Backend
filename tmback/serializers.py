@@ -15,7 +15,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ['product_id', ' category_id', 'company_id','name','price']
+        fields = ['product_id', 'category_id', 'company_id','name','price']
 
 class OrderDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,6 +35,8 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['order_id','company_id','order_detail_id','customer_name','customer_number','customer_address','date_ordered','status']
+
+
 
 class InvoiceSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):

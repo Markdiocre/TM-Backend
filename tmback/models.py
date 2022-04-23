@@ -37,7 +37,7 @@ class OrderDetail(models.Model):
     quantity = models.IntegerField()
 
     def __str__(self):
-        '{} - {}'.format(self.product_id.name, self.quantity)
+        return '{} - {}'.format(self.product_id.name, self.quantity)
 
 class Order(models.Model):
 
@@ -55,7 +55,10 @@ class Order(models.Model):
     customer_number = models.IntegerField()
     customer_address = models.CharField(max_length= 100)
     date_ordered = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=1,choices=ord_status)
+    status = models.CharField(max_length=1,choices=ord_status, default='P')
+
+    def __str__(self):
+        return self.customer_name
 
 class Invoice(models.Model):
     invoice_id = models.AutoField(primary_key=True)
