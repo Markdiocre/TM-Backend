@@ -11,4 +11,7 @@ router.register('product', ProductView,basename='product')
 router.register('order', OrderView, basename='order')
 router.register('invoice',InvoiceView, basename='invoice')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+] + router.urls
