@@ -115,6 +115,14 @@ REST_FRAMEWORK = {
     ),
 }
 
+DJOSER = {
+    'SERIALIZERS': {
+         'user_create': 'tmback.serializers.UserRegistrationSerializer',
+         'user': 'tmback.serializers.UserSerializer',
+         'current_user': 'tmback.serializers.UserSerializer',
+    }
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from djoser.serializers import UserCreateSerializer as BaseUserRegistrationSerializer, UserSerializer as BaseUserSerializer
 from .models import Company, Category, Product,OrderDetail, Order, Invoice
 
 class CompanySerializer(serializers.ModelSerializer):
@@ -50,3 +50,11 @@ class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
         fields = ['invoice_id','company_id','order_id','date_delivered']
+
+class UserRegistrationSerializer(BaseUserRegistrationSerializer):
+    class Meta(BaseUserRegistrationSerializer.Meta):
+        fields = ('id', 'email','username', 'first_name', 'last_name', 'password', )
+
+class UserSerializer(BaseUserSerializer):
+    class Meta(BaseUserSerializer.Meta):
+        fields = ('id', 'email', 'first_name','last_name',)
