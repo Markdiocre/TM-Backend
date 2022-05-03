@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from djoser.serializers import UserCreateSerializer as BaseUserRegistrationSerializer, UserSerializer as BaseUserSerializer
-from .models import Company, Category, Product,OrderDetail, Order, Invoice
+from .models import Company, Category, Product,OrderDetail, Order
 
 class CompanySerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,18 +38,18 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 
-class InvoiceSerializer(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        super(InvoiceSerializer, self).__init__(*args, **kwargs)
-        request = self.context.get('request')
-        if request and (request.method == 'POST' or request.method == 'PUT'):
-            self.Meta.depth = 0
-        else:
-            self.Meta.depth = 1
+# class InvoiceSerializer(serializers.ModelSerializer):
+#     def __init__(self, *args, **kwargs):
+#         super(InvoiceSerializer, self).__init__(*args, **kwargs)
+#         request = self.context.get('request')
+#         if request and (request.method == 'POST' or request.method == 'PUT'):
+#             self.Meta.depth = 0
+#         else:
+#             self.Meta.depth = 1
     
-    class Meta:
-        model = Invoice
-        fields = ['invoice_id','company_id','order_id','date_delivered']
+#     class Meta:
+#         model = Invoice
+#         fields = ['invoice_id','company_id','order_id','date_delivered']
 
 class UserRegistrationSerializer(BaseUserRegistrationSerializer):
     class Meta(BaseUserRegistrationSerializer.Meta):

@@ -60,10 +60,10 @@ class Order(models.Model):
     def __str__(self):
         return self.customer_name
 
-class Invoice(models.Model):
-    invoice_id = models.AutoField(primary_key=True)
-    company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
-    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
+# class Invoice(models.Model):
+#     invoice_id = models.AutoField(primary_key=True)
+#     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
+#     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
 
-    date_delivered = models.DateTimeField(auto_now=True)
+#     date_delivered = models.DateTimeField(auto_now=True)
 

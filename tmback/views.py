@@ -3,9 +3,9 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
-from .models import Company, Category, Product,OrderDetail, Order, Invoice
+from .models import Company, Category, Product,OrderDetail, Order
 
-from .serializers import CompanySerializer, CategorySerializer, ProductSerializer, OrderDetailSerializer, OrderSerializer, InvoiceSerializer
+from .serializers import CompanySerializer, CategorySerializer, ProductSerializer, OrderDetailSerializer, OrderSerializer
 
 # Create your views here.
 
@@ -56,11 +56,11 @@ class OrderView(viewsets.ModelViewSet):
         serializer = OrderSerializer(order)
         return Response(serializer.data)
 
-class InvoiceView(viewsets.ModelViewSet):
-    serializer_class = InvoiceSerializer
-    permission_classes = [IsAuthenticated, ]
+# class InvoiceView(viewsets.ModelViewSet):
+#     serializer_class = InvoiceSerializer
+#     permission_classes = [IsAuthenticated, ]
 
-    def get_queryset(self):
-        company = self.request.user.company
-        print(company)
-        return Invoice.objects.filter(company_id=company)
+#     def get_queryset(self):
+#         company = self.request.user.company
+#         print(company)
+#         return Invoice.objects.filter(company_id=company)
