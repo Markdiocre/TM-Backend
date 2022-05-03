@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 from .models import Company, Category, Product,OrderDetail, Order, Invoice
 
@@ -9,20 +10,28 @@ from .serializers import CompanySerializer, CategorySerializer, ProductSerialize
 # Create your views here.
 
 class CompanyView(viewsets.ModelViewSet):
+    
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
 
 class CategoryView(viewsets.ModelViewSet):
+    
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
 
 
 class ProductView(viewsets.ModelViewSet):
+    
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, ]
 
 class OrderView(viewsets.ModelViewSet):
+    
     serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated, ]
 
     def get_queryset(self):
         company = self.request.user.company
@@ -49,6 +58,7 @@ class OrderView(viewsets.ModelViewSet):
 
 class InvoiceView(viewsets.ModelViewSet):
     serializer_class = InvoiceSerializer
+    permission_classes = [IsAuthenticated, ]
 
     def get_queryset(self):
         company = self.request.user.company
