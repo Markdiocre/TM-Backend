@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Company, Category, Product,OrderDetail, Order
 
@@ -12,26 +13,39 @@ from .serializers import CompanySerializer, CategorySerializer, ProductSerialize
 class CompanyView(viewsets.ModelViewSet):
     
     queryset = Company.objects.all()
+    filter_backends = (DjangoFilterBackend,)
     serializer_class = CompanySerializer
     permission_classes = [IsAuthenticatedOrReadOnly, ]
+    filterset_fields = ('user',)
+    
 
 class CategoryView(viewsets.ModelViewSet):
     
     queryset = Category.objects.all()
+    filter_backends = (DjangoFilterBackend,)
     serializer_class = CategorySerializer
     permission_classes = [IsAuthenticatedOrReadOnly, ]
+    filterset_fields = ('company_id',)
+    
 
 
 class ProductView(viewsets.ModelViewSet):
     
     queryset = Product.objects.all()
+    filter_backends = (DjangoFilterBackend,)
     serializer_class = ProductSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, ]
+    filterset_fields = ('company_id',)
+    
 
 class OrderView(viewsets.ModelViewSet):
     
     serializer_class = OrderSerializer
+    filter_backends = (DjangoFilterBackend,)
     permission_classes = [IsAuthenticated, ]
+    filterset_fields = ('company_id',)
+    
+    
 
     def get_queryset(self):
         company = self.request.user.company
