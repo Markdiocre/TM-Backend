@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-x!ta#tmu0td=ajnyqx+lpo7q01@37c)&htna!38oeeyzldd6!g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*',
+]
 
 # Application definition
 
@@ -132,7 +134,7 @@ DJOSER = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 

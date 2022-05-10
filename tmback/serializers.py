@@ -57,4 +57,4 @@ class UserRegistrationSerializer(BaseUserRegistrationSerializer):
 
 class UserSerializer(BaseUserSerializer):
     class Meta(BaseUserSerializer.Meta):
-        fields = ('id', 'email', 'first_name','last_name',)
+        fields = ('id','username', 'email', 'first_name','last_name',)
